@@ -1,0 +1,179 @@
+package com.babuwyt.consignor.ui.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.babuwyt.consignor.R;
+import com.babuwyt.consignor.adapter.OrderDetailsAdapter;
+import com.babuwyt.consignor.base.BaseActivity;
+import com.babuwyt.consignor.base.SessionManager;
+import com.babuwyt.consignor.bean.OrderBean;
+import com.babuwyt.consignor.entity.OrderEntity;
+import com.babuwyt.consignor.finals.BaseURL;
+import com.babuwyt.jonylibrary.inteface.MyCallBack;
+import com.babuwyt.jonylibrary.util.UHelper;
+import com.babuwyt.jonylibrary.util.XUtil;
+import com.babuwyt.jonylibrary.views.CustomGridView;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by lenovo on 2017/9/11.
+ */
+
+@ContentView(R.layout.activity_history_orderdetails)
+public class HistoryOrderDetailsActivity extends BaseActivity {
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.tv_ordernum)
+    TextView tv_ordernum;
+    @ViewInject(R.id.tv_state)
+    TextView tv_state;
+    @ViewInject(R.id.tv_timeti)
+    TextView tv_timeti;
+    @ViewInject(R.id.tv_timexie)
+    TextView tv_timexie;
+    @ViewInject(R.id.tv_name)
+    TextView tv_name;
+    @ViewInject(R.id.tv_beizhu)
+    TextView tv_beizhu;
+    @ViewInject(R.id.zhuangxie_gridview)
+    CustomGridView zhuangxie_gridview;
+    @ViewInject(R.id.qianshou_gridview)
+    CustomGridView qianshou_gridview;
+    @ViewInject(R.id.layout_state)
+    LinearLayout layout_state;
+
+
+    private OrderEntity entity;
+    private String orderId;
+    private OrderDetailsAdapter loadAdapter;
+    private ArrayList<String> loads;
+    private OrderDetailsAdapter realAdapter;
+    private ArrayList<String> reals;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        orderId=getIntent().getStringExtra("orderId");
+        init();
+        getOrderDetails();
+    }
+    private void init() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        loadAdapter=new OrderDetailsAdapter(this);
+        loads=new ArrayList<String>();
+        loadAdapter.setmList(loads);
+        zhuangxie_gridview.setAdapter(loadAdapter);
+        realAdapter=new OrderDetailsAdapter(this);
+        reals=new ArrayList<String>();
+        realAdapter.setmList(reals);
+        qianshou_gridview.setAdapter(realAdapter);
+    }
+
+    @Event(value = {R.id.layout_state})
+    private void getE(View v){
+        switch (v.getId()){
+            case R.id.layout_state:
+                if (entity==null){
+                    return;
+                }
+                Intent intent=new Intent();
+                intent.setClass(this,StateGenzongActivity.class);
+                intent.putExtra("orderId",entity.getOrderId());
+                startActivity(intent);
+                break;
+        }
+    }
+
+
+    private void getOrderDetails(){
+        Map<String,String> map=new HashMap<String, String>();
+        map.put("userId", SessionManager.getInstance().getUser().getUserId());
+        map.put("orderId",orderId);
+        loadingDialog.showDialog();
+        XUtil.PostJson(BaseURL.ORDERDETAILS, map, new MyCallBack<OrderBean>() {
+            @Override
+            public void onSuccess(OrderBean result) {
+                super.onSuccess(result);
+                loadingDialog.dissDialog();
+                if (result.isSuccess() && result.getObj()!=null){
+                    entity=result.getObj();
+                    setData();
+                }else {
+                    UHelper.showToast(HistoryOrderDetailsActivity.this,getString(R.string.has_no_data));
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                loadingDialog.dissDialog();
+            }
+        });
+    }
+
+    private void setData(){
+        if (entity==null){
+            return;
+        }
+        if (TextUtils.isEmpty(entity.getOrderNumber())){
+            tv_ordernum.setText(entity.getOrderSysNumber());
+        }else {
+            tv_ordernum.setText(entity.getOrderNumber());
+        }
+        tv_timeti.setText(entity.getExtractTime());
+        tv_timexie.setText(entity.getRealextractTime());
+        tv_name.setText(entity.getGoodsName());
+        tv_beizhu.setText(entity.getRemark());
+        String str=null;
+        switch (entity.getOrderState()) {
+            case "1":
+                str="装货已签到";
+                break;
+            case "2":
+                str="装货已拍照";
+                break;
+            case "3":
+                str="已装货（装货照片已审核）";
+                break;
+            case "4":
+                str="卸货已签到";
+                break;
+            case "5":
+                str="已卸货（签收单照片已审核）";
+                break;
+            case "6":
+                str="签收单已交回";
+                break;
+            case "7":
+                str="签收单已确认(已完成)";
+                break;
+        }
+        tv_state.setText(str);
+        if (entity.getLoadingPic()!=null && entity.getLoadingPic().size()>0){
+            loads.addAll(entity.getLoadingPic());
+            loadAdapter.notifyDataSetChanged();
+        }
+        if (entity.getUnloadingPic()!=null && entity.getUnloadingPic().size()>0){
+            reals.addAll(entity.getUnloadingPic());
+            realAdapter.notifyDataSetChanged();
+        }
+    }
+
+}

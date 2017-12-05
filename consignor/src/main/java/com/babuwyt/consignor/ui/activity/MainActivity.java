@@ -1,0 +1,235 @@
+package com.babuwyt.consignor.ui.activity;
+
+
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Toast;
+
+import com.babuwyt.consignor.R;
+import com.babuwyt.consignor.base.BaseActivity;
+import com.babuwyt.consignor.base.ClientApp;
+import com.babuwyt.consignor.base.SessionManager;
+import com.babuwyt.consignor.finals.DataSynEvent;
+import com.babuwyt.consignor.ui.fragment.GenzongOrderFragment;
+import com.babuwyt.consignor.ui.fragment.MainFragment;
+import com.babuwyt.consignor.ui.fragment.MainLeftFragment;
+import com.babuwyt.consignor.ui.fragment.ReleaseOrderFragment;
+import com.babuwyt.jonylibrary.util.UHelper;
+import com.babuwyt.jonylibrary.views.dialog.PromptDialog;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
+
+@ContentView(R.layout.activity_main)
+public class MainActivity extends BaseActivity{
+    @ViewInject(R.id.drawer_layout)
+    DrawerLayout drawer_layout;
+    private MainLeftFragment fragment;
+    private FragmentManager manager;
+    private FragmentTransaction leftAction;
+    private FragmentTransaction MainAction;
+
+    private MainFragment mainFragment;
+    private ReleaseOrderFragment releaseOrderFragment;
+    private GenzongOrderFragment genzongOrderFragment;
+    private int type=1;//1管理员  2 发单  3跟单
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+        init();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void helloEventBus(DataSynEvent event) {
+        if (event.getType()==event.DRAWER_LAYOUT_OPEN){
+            if (!drawer_layout.isDrawerOpen(GravityCompat.START)){
+                drawer_layout.openDrawer(GravityCompat.START);
+            }
+        }
+    }
+
+    private void init(){
+        manager = getSupportFragmentManager();
+        //初始化侧边栏
+        fragment=new MainLeftFragment();
+        leftAction = manager.beginTransaction();
+        leftAction.replace(R.id.fl_content, fragment);
+        leftAction.commit();
+        //初始化首页 根据权限不同加载不同fragment
+        MainAction = manager.beginTransaction();
+
+        if (type==1){
+            mainFragment=new MainFragment();//发布 跟单 都有
+            MainAction.replace(R.id.main_content, mainFragment);
+        }
+        if (type==2){
+            releaseOrderFragment=ReleaseOrderFragment.newInstance(View.VISIBLE);//发单
+            MainAction.replace(R.id.main_content, releaseOrderFragment);
+        }
+        if (type==3){
+            genzongOrderFragment=GenzongOrderFragment.newInstance(View.VISIBLE);//跟单
+            MainAction.replace(R.id.main_content, genzongOrderFragment);
+        }
+        MainAction.commit();
+    }
+
+
+    /**
+     * 点击两次退出应用
+     * 通过记录按键时间计算时间差实现
+     */
+    long exitTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                drawer_layout.closeDrawer(GravityCompat.START);
+            } else {
+                if (System.currentTimeMillis() - exitTime > 2000) {
+                    Toast.makeText(MainActivity.this, getString(R.string.onclickisexit), Toast.LENGTH_SHORT).show();
+                    exitTime = System.currentTimeMillis();
+                } else {
+                    finish();
+                    System.exit(0);
+                }
+            }
+        }
+        return false;
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isAuth();
+    }
+
+    @SuppressLint("NewApi")
+    private void isAuth(){
+        final PromptDialog dialog=new PromptDialog(this);
+        if (SessionManager.getInstance().getUser().getIsAuth()==0){
+            //未认证
+
+            dialog.setMsg("请先进行信息认证");
+            dialog.setImg(R.drawable.icon_dialog_renzheng);
+            dialog.setOnClick1("取消", new PromptDialog.Btn1OnClick() {
+                @Override
+                public void onClick() {
+                    formpt(dialog);
+                }
+            });
+            dialog.setOnClick2("立即认证", new PromptDialog.Btn2OnClick() {
+                @Override
+                public void onClick() {
+                    startActivity(new Intent(MainActivity.this,InfoAuthActivity.class));
+                }
+            });
+            dialog.setCanceledTouchOutside(false);
+            dialog.create();
+            dialog.showDialog();
+
+            return;
+        }
+        if (SessionManager.getInstance().getUser().getIsAuth()==2){
+            //认证中
+
+            dialog.setMsg("认证中,稍后再试");
+            dialog.setImg(R.drawable.icon_dialog_renzheng);
+//            dialog.setOnClick1("取消", new PromptDialog.Btn1OnClick() {
+//                @Override
+//                public void onClick() {
+//
+//                }
+//            });
+            dialog.setOnClick2("确定", new PromptDialog.Btn2OnClick() {
+                @Override
+                public void onClick() {
+                    formpt(dialog);
+                }
+            });
+            dialog.setCanceledTouchOutside(false);
+            dialog.create();
+            dialog.showDialog();
+            return;
+        }
+        if (TextUtils.isEmpty(SessionManager.getInstance().getUser().getUserPhone())){
+            //绑定手机号
+            dialog.setMsg("请先绑定手机号");
+            dialog.setImg(R.drawable.icon_dialog_renzheng);
+            dialog.setOnClick1("取消", new PromptDialog.Btn1OnClick() {
+                @Override
+                public void onClick() {
+                    System.exit(0);
+                }
+            });
+            dialog.setOnClick2("立即绑定", new PromptDialog.Btn2OnClick() {
+                @Override
+                public void onClick() {
+                    startActivity(new Intent(MainActivity.this,BindTelActivity.class));
+                }
+            });
+            dialog.setCanceledTouchOutside(false);
+            dialog.create();
+            dialog.showDialog();
+        }
+
+    }
+    private void formpt(final PromptDialog dialog){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("退出应用");
+        builder.setMessage("确定退出应用程序?");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                dialog.showDialog();
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+
+//                System.exit(0);
+                logOut();
+            }
+        });
+        builder.create().show();
+
+    }
+    /**
+     * 退出登录，清楚缓存
+     */
+    private void logOut(){
+        ((ClientApp)getApplication()).clearLoginUser();
+        Intent intent=new Intent(this,LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+
+}

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config=":jonylibrary"><source path="E:\develop\android\project\WYTApp3\jonylibrary\build\intermediates\bundles\release\assets"/></dataSet><dataSet config="main"><source path="E:\develop\android\project\WYTApp3\agentapp\src\main\assets"/><source path="E:\develop\android\project\WYTApp3\agentapp\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="E:\develop\android\project\WYTApp3\agentapp\src\release\assets"/></dataSet></merger>

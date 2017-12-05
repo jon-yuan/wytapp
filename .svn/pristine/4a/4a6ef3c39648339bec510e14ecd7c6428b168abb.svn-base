@@ -1,0 +1,282 @@
+package com.babuwyt.siji;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.tencent.upload.Const;
+import com.tencent.upload.UploadManager;
+import com.tencent.upload.task.ITask;
+import com.tencent.upload.task.IUploadTaskListener;
+import com.tencent.upload.task.data.FileInfo;
+import com.tencent.upload.task.impl.PhotoUploadTask;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.digest.HmacUtils;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
+
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+    private static int RESULT_LOAD_IMAGE = 1;
+    private UploadManager photoUploadMgr = null;
+    private TextView commit;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        commit = findViewById(R.id.commit);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        photoUploadMgr = new UploadManager(this, "1253538594",
+                Const.FileType.Photo, "qcloudphoto");
+        commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    init();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void init() throws Exception {
+        PhotoUploadTask task = new PhotoUploadTask(mFilePath,
+                new IUploadTaskListener() {
+
+                    @Override
+                    public void onUploadSucceed(final FileInfo result) {
+                        Log.i("Demo", "upload succeed: " + result.url);
+                    }
+
+                    @Override
+                    public void onUploadStateChange(ITask.TaskState state) {
+                    }
+
+                    @Override
+                    public void onUploadProgress(long totalSize, long sendSize) {
+                        long p = (long) ((sendSize * 100) / (totalSize * 1.0f));
+                        Log.i("Demo", "上传进度: " + p + "%");
+                    }
+
+                    @Override
+                    public void onUploadFailed(final int errorCode, final String errorMsg) {
+                        Log.i("Demo", "上传结果:失败! ret:" + errorCode + " msg:" + errorMsg);
+                    }
+                }
+        );
+        task.setBucket("bbkj");
+//        task.setFileId("test_fileId_" + UUID.randomUUID()); // 为图片自定义FileID(可选)
+        task.setAuth(getSign());
+
+        photoUploadMgr.upload(task);  // 开始上传
+    }
+
+    private String getSign() {
+        long now = new Date().getTime() / 1000;
+        long e = now + 60 * 60 * 24 * 30; //签名过期时间为当前+60s
+        int r = (int) (Math.random() * Math.pow(2, 32));
+        String path = "";//多次签名这里填空
+        String str = "a=" + "1253538594" + "&b=" + "bbkj" + "&k=" + "AKIDb7TktwNXbefUDoTYo6EBmLjwyqcG44FE" +
+                "&e=" + e + "&t=" + now + "&r=" + r + "&u=0&f=";
+
+        String bin=new String(HmacUtils.hmacSha1("0pUyHUYZQLsFap2VmsmVHxToyAB2lKiu", str));
+        Base64.encodeBase64((bin+str).getBytes());
+        return str;
+    }
+
+    public String encodeUrl(String signUrl) {
+        if (TextUtils.isEmpty(signUrl)) {
+            return signUrl;
+        }
+
+        byte[] decode = Base64.decodeBase64(signUrl.getBytes());
+        Log.d("==编码==", new String(decode));
+        return new String(decode);
+//            return URLEncoder.encode(signUrl,"UTF-8");
+    }
+
+    public static String HmacSHA1Encrypt(String encryptText, String encryptKey) throws Exception {
+        byte[] data = encryptKey.getBytes("UTF-8");
+        //根据给定的字节数组构造一个密钥,第二参数指定一个密钥算法的名称
+        SecretKey secretKey = new SecretKeySpec(data, "HmacSHA1");
+        //生成一个指定 Mac 算法 的 Mac 对象
+        Mac mac = Mac.getInstance("HmacSHA1");
+        //用给定密钥初始化 Mac 对象
+        mac.init(secretKey);
+
+        byte[] text = encryptText.getBytes("UTF-8");
+        //完成 Mac 操作
+        return new String(mac.doFinal(text));
+    }
+
+    private static String appSignBase(int appId, String secret_id, String secret_key,
+                                      String bucket,
+                                      long expired, String fileid) {
+        if (empty(secret_id) || empty(secret_key)) {
+            return null;
+        }
+
+        long now = System.currentTimeMillis() / 1000;
+        int rdm = Math.abs(new Random().nextInt());
+        String plain_text = "";
+        if (empty(bucket)) {
+            plain_text = String.format("a=%d&k=%s&e=%d&t=%d&r=%d&u=%s&f=%s",
+                    appId, secret_id, expired, now, rdm, 0, fileid);
+        } else {
+            plain_text = String.format("a=%d&b=%s&k=%s&e=%d&t=%d&r=%d&u=%s&f=%s",
+                    appId, bucket, secret_id, expired, now, rdm, 0, fileid);
+        }
+        byte[] bin = HmacUtils.hmacSha1(secret_key, plain_text);
+
+        byte[] all = new byte[bin.length + plain_text.getBytes().length];
+        System.arraycopy(bin, 0, all, 0, bin.length);
+        System.arraycopy(plain_text.getBytes(), 0, all, bin.length, plain_text.getBytes().length);
+
+        all = Base64.encodeBase64(all);
+        return new String(all);
+    }
+
+    public static boolean empty(String s) {
+        return s == null || s.trim().equals("") || s.trim().equals("null");
+    }
+
+    public static String getPath(Context context, Uri uri) {
+        if ("content".equalsIgnoreCase(uri.getScheme())) {
+            String[] projection = {MediaStore.MediaColumns.DATA};
+            Cursor cursor = null;
+            try {
+                cursor = context.getContentResolver().query(uri, projection, null, null, null);
+                int column_index = cursor.getColumnIndexOrThrow("_data");
+                if (cursor.moveToFirst()) {
+                    return cursor.getString(column_index);
+                }
+            } catch (Exception e) {
+
+            } finally {
+                if (cursor != null)
+                    cursor.close();
+            }
+        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+
+        return null;
+    }
+
+    String mFilePath;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK || data == null)
+            return;
+
+        if (requestCode == RESULT_LOAD_IMAGE) {
+            try {
+                Uri selectedImage = data.getData();
+                mFilePath = getPath(getBaseContext(), selectedImage);
+                Log.d("mFilePath", mFilePath);
+
+            } catch (Exception e) {
+                Log.e("Demo", "choose file error!", e);
+            }
+
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+            Uri uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            //if(type == FileType.Video) {
+            //uri = android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+            //resultCode = RESULT_LOAD_VIDEO;
+            //}
+            Intent i = new Intent(Intent.ACTION_PICK, uri);
+            startActivityForResult(i, RESULT_LOAD_IMAGE);
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+}

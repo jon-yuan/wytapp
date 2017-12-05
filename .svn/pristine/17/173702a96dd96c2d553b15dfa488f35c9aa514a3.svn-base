@@ -1,0 +1,297 @@
+package com.babuwyt.siji.ui.activity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.babuwyt.jonylibrary.inteface.MyCallBack;
+import com.babuwyt.jonylibrary.util.UHelper;
+import com.babuwyt.jonylibrary.util.XUtil;
+import com.babuwyt.siji.R;
+import com.babuwyt.siji.base.BaseActivity;
+import com.babuwyt.siji.base.SessionManager;
+import com.babuwyt.siji.bean.BankListBean;
+import com.babuwyt.siji.bean.BindBankCarkBean;
+import com.babuwyt.siji.entity.BankEntity;
+import com.babuwyt.siji.finals.BaseURL;
+import com.bigkoo.pickerview.OptionsPickerView;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
+/**
+ * Created by lenovo on 2017/9/22.
+ */
+@ContentView(R.layout.activity_bingingbankcar)
+public class BindingBankCarkActivity extends BaseActivity {
+    protected static final int REQUEST_CODE = 0x1111;
+    public static final int RESULT_CODE = 0x1112;
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.et_banknum)
+    EditText et_banknum;
+    @ViewInject(R.id.tv_bankname)
+    TextView tv_bankname;
+    @ViewInject(R.id.et_bankphone)
+    EditText et_bankphone;
+    @ViewInject(R.id.et_authCode)
+    EditText et_authCode;
+    @ViewInject(R.id.tv_authCode)
+    TextView tv_authCode;
+    private String BankId;
+    private ArrayList<BankEntity> mList;
+    private int time = 60;
+    private Timer timer;
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @SuppressLint("ResourceAsColor")
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (time > 0) {
+                tv_authCode.setText("(" + time + "s)" + getString(R.string.after_get));
+                tv_authCode.setTextColor(R.color.black_98);
+                tv_authCode.setEnabled(false);
+            } else {
+                timer.cancel();
+                timer = null;
+                time = 60;
+                tv_authCode.setText(getString(R.string.getAuthCode));
+                tv_authCode.setTextColor(R.color.black_333);
+                tv_authCode.setEnabled(true);
+            }
+        }
+    };
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
+    private void init() {
+        mList = new ArrayList<BankEntity>();
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    @Event(value = {R.id.tv_bankname, R.id.tv_authCode, R.id.tv_commit})
+    private void getE(View v) {
+        switch (v.getId()) {
+            case R.id.tv_bankname:
+//                if (mList.size() <= 0) {
+//                    getBankList();
+//                } else {
+//                    showBankSelect(mList);
+//                }
+                selectBank();
+                break;
+            case R.id.tv_authCode:
+                isEmpty(false);
+                break;
+            case R.id.tv_commit:
+                isEmpty(true);
+                break;
+        }
+    }
+
+    private void isEmpty(boolean b) {
+        if (TextUtils.isEmpty(et_banknum.getText().toString().trim())) {
+            UHelper.showToast(BindingBankCarkActivity.this, getString(R.string.please_input_bankcar));
+            return;
+        }
+        if (!UHelper.isBankNumbuter(et_banknum.getText().toString())) {
+            UHelper.showToast(BindingBankCarkActivity.this, getString(R.string.bankcar_is_format_fail));
+            return;
+        }
+        if (TextUtils.isEmpty(BankId)) {
+            UHelper.showToast(BindingBankCarkActivity.this, getString(R.string.please_select_bank));
+            return;
+        }
+        if (TextUtils.isEmpty(et_bankphone.getText().toString().trim()) || !UHelper.isPhone(et_bankphone.getText().toString().trim())) {
+            UHelper.showToast(BindingBankCarkActivity.this, getString(R.string.phone_numbuter_is_fail));
+            return;
+        }
+        if (b) {
+            if (TextUtils.isEmpty(et_authCode.getText().toString().trim())) {
+                UHelper.showToast(BindingBankCarkActivity.this, getString(R.string.please_input_auth_code));
+                return;
+            }
+        }
+        if (b) {
+            getBind();
+        } else {
+            getCode();
+        }
+    }
+
+    /**
+     * 获取银行验证码
+     */
+
+    private void getCode() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("memId", SessionManager.getInstance().getUser().getFdriverid());
+        map.put("acctId", et_banknum.getText().toString().trim());
+        map.put("bankId", BankId);
+        map.put("messageCode", "");
+        map.put("mobilePhone", et_bankphone.getText().toString().trim());
+        dialog.showDialog();
+        XUtil.PostJsonObj(BaseURL.BINDINGBANKCAR, map, SessionManager.getInstance().getUser().getWebtoken(), new MyCallBack<BindBankCarkBean>() {
+            @Override
+            public void onSuccess(BindBankCarkBean result) {
+                super.onSuccess(result);
+                dialog.dissDialog();
+                if (result.isSuccess()) {
+                    timeDown();
+                    UHelper.showToast(BindingBankCarkActivity.this, getString(R.string.has_send_to_this_phone));
+                } else {
+                    UHelper.showToast(BindingBankCarkActivity.this, result.getObj().getRspMsg());
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                dialog.dissDialog();
+            }
+        });
+    }
+
+    /**
+     * 绑定银行卡
+     */
+    private void getBind() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("memId", SessionManager.getInstance().getUser().getFdriverid());
+        map.put("acctId", et_banknum.getText().toString().trim());
+        map.put("bankId", BankId);
+        map.put("messageCode", et_authCode.getText().toString().trim());
+        map.put("mobilePhone", et_bankphone.getText().toString().trim());
+        dialog.showDialog();
+        XUtil.PostJsonObj(BaseURL.BINDMESBACKFILL, map, SessionManager.getInstance().getUser().getWebtoken(), new MyCallBack<BindBankCarkBean>() {
+            @Override
+            public void onSuccess(BindBankCarkBean result) {
+                super.onSuccess(result);
+                dialog.dissDialog();
+                if (result.isSuccess()) {
+                    finish();
+                    UHelper.showToast(BindingBankCarkActivity.this, getString(R.string.binding_success));
+                } else {
+                    UHelper.showToast(BindingBankCarkActivity.this, result.getObj().getRspMsg());
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                dialog.dissDialog();
+            }
+        });
+    }
+
+    private void timeDown() {
+
+        timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                time--;
+                Message msg = handler.obtainMessage();
+                msg.what = 1;
+                handler.sendMessage(msg);
+            }
+        };
+        timer.schedule(timerTask, 0, 1000);
+    }
+
+    /**
+     * 获取银行
+     */
+    private void getBankList() {
+        dialog.showDialog();
+        XUtil.Post(BaseURL.ALLBANKIFO, new ArrayList<String>(), SessionManager.getInstance().getUser().getWebtoken(), new MyCallBack<BankListBean>() {
+            @Override
+            public void onSuccess(BankListBean result) {
+                super.onSuccess(result);
+                dialog.dissDialog();
+                if (result.isSuccess() && result.getObj() != null && result.getObj().size() > 0) {
+                    mList.clear();
+                    mList.addAll(result.getObj());
+                    showBankSelect(mList);
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                dialog.dissDialog();
+            }
+        });
+    }
+
+    /**
+     * 显示银行
+     *
+     * @param list
+     */
+    private void showBankSelect(final ArrayList<BankEntity> list) {
+        final OptionsPickerView pvOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+                tv_bankname.setText(list.get(options1).getPickerViewText());
+                BankId = list.get(options1).getZid();
+            }
+        }).build();
+        pvOptions.setPicker(list);
+        pvOptions.show();
+    }
+
+    /**
+     * select bank
+     */
+
+    private void selectBank() {
+        Intent intent = new Intent();
+        intent.setClass(this, BankCarListActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_CODE) {
+            BankId=data.getStringExtra("ZID");
+            tv_bankname.setText(data.getStringExtra("ZBANKSNAME"));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+    }
+}

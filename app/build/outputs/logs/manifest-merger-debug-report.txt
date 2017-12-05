@@ -1,0 +1,548 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+MERGED from [com.liaoinstan.springview:library:1.2.6] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\library-1.2.6.aar\fc0ca85e7f16ad9bded204827c39ffe4\AndroidManifest.xml:2:1-17:12
+MERGED from [:jonylibrary] E:\develop\android\project\WYTApp3\jonylibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0-beta1.aar\0e772c60e64d5d34b029ca9a3943a72e\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\02a5dcf8334e01f558aa64ab23675da3\AndroidManifest.xml:2:1-11:12
+MERGED from [org.xutils:xutils:3.5.0] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\xutils-3.5.0.aar\88c8357fcd8337061471dec66b0315f1\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:transition:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\transition-26.0.0-beta1.aar\5c61c9623d72fa92caab80946e9a6bd8\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0-beta1.aar\18a02ad65fe9c76481f5c19f59e77610\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:recyclerview-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0-beta1.aar\46a8df849e9f5c07310b58c905104752\AndroidManifest.xml:17:1-28:12
+MERGED from [in.srain.cube:ultra-ptr:1.0.11] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\ultra-ptr-1.0.11.aar\f5f99cc7f4342b9597eb432825fa3dbd\AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:support-media-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0-beta1.aar\dd976921a2b4002ba13ab0cc820aea90\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0-beta1.aar\3dc72455be975e3e9495d82fd53ee8d7\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0-beta1.aar\b5b673b562be7c45643d9abfceb584e6\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0-beta1.aar\04f3dc85bcca6fa6b5925fa0fb33bcde\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-core-ui:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0-beta1.aar\045e04a59b67a9887dad14c36f15038d\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0-beta1.aar\97a5c508b51f0e318a6e58abdb2426dc\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0-beta1.aar\c34a011e9f6bdaf4dc9ff54273480cb5\AndroidManifest.xml:17:1-31:12
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+	package
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:3:5-38
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:1-209:12
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:7:5-76
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:7:22-73
+uses-permission#android.permission.INTERNET
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:8:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:9:22-78
+permission#com.babuwyt.documentary.permission.JPUSH_MESSAGE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:11:5-13:47
+	android:protectionLevel
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:13:9-44
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:12:9-72
+uses-permission#com.babuwyt.documentary.permission.JPUSH_MESSAGE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:16:5-88
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:16:22-85
+uses-permission#android.permission.RECEIVE_USER_PRESENT
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:17:5-79
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:17:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:18:5-68
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:18:22-65
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:19:5-75
+MERGED from [:jonylibrary] E:\develop\android\project\WYTApp3\jonylibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-75
+MERGED from [:jonylibrary] E:\develop\android\project\WYTApp3\jonylibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-75
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:19:22-72
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:20:5-80
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:20:22-77
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:21:5-73
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:21:22-70
+uses-permission#android.permission.VIBRATE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:22:5-66
+MERGED from [:jonylibrary] E:\develop\android\project\WYTApp3\jonylibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-66
+MERGED from [:jonylibrary] E:\develop\android\project\WYTApp3\jonylibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-66
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:22:22-63
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:23:5-84
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:23:22-81
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:24:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:25:5-81
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:25:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:26:5-79
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:26:22-76
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:32:5-78
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:32:22-75
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:34:5-76
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:34:22-73
+uses-permission#android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:36:5-89
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:36:22-86
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:37:5-79
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:37:22-76
+uses-permission#android.permission.GET_TASKS
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:38:5-68
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:38:22-65
+application
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:41:5-208:19
+MERGED from [com.liaoinstan.springview:library:1.2.6] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\library-1.2.6.aar\fc0ca85e7f16ad9bded204827c39ffe4\AndroidManifest.xml:11:5-15:19
+MERGED from [com.liaoinstan.springview:library:1.2.6] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\library-1.2.6.aar\fc0ca85e7f16ad9bded204827c39ffe4\AndroidManifest.xml:11:5-15:19
+MERGED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0-beta1.aar\0e772c60e64d5d34b029ca9a3943a72e\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0-beta1.aar\0e772c60e64d5d34b029ca9a3943a72e\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\02a5dcf8334e01f558aa64ab23675da3\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\02a5dcf8334e01f558aa64ab23675da3\AndroidManifest.xml:9:5-20
+MERGED from [org.xutils:xutils:3.5.0] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\xutils-3.5.0.aar\88c8357fcd8337061471dec66b0315f1\AndroidManifest.xml:12:5-20
+MERGED from [org.xutils:xutils:3.5.0] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\xutils-3.5.0.aar\88c8357fcd8337061471dec66b0315f1\AndroidManifest.xml:12:5-20
+MERGED from [com.android.support:transition:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\transition-26.0.0-beta1.aar\5c61c9623d72fa92caab80946e9a6bd8\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\transition-26.0.0-beta1.aar\5c61c9623d72fa92caab80946e9a6bd8\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0-beta1.aar\18a02ad65fe9c76481f5c19f59e77610\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0-beta1.aar\18a02ad65fe9c76481f5c19f59e77610\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:recyclerview-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0-beta1.aar\46a8df849e9f5c07310b58c905104752\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0-beta1.aar\46a8df849e9f5c07310b58c905104752\AndroidManifest.xml:22:5-26:19
+MERGED from [in.srain.cube:ultra-ptr:1.0.11] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\ultra-ptr-1.0.11.aar\f5f99cc7f4342b9597eb432825fa3dbd\AndroidManifest.xml:11:5-20
+MERGED from [in.srain.cube:ultra-ptr:1.0.11] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\ultra-ptr-1.0.11.aar\f5f99cc7f4342b9597eb432825fa3dbd\AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:support-media-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0-beta1.aar\dd976921a2b4002ba13ab0cc820aea90\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0-beta1.aar\dd976921a2b4002ba13ab0cc820aea90\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0-beta1.aar\3dc72455be975e3e9495d82fd53ee8d7\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0-beta1.aar\3dc72455be975e3e9495d82fd53ee8d7\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0-beta1.aar\b5b673b562be7c45643d9abfceb584e6\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0-beta1.aar\b5b673b562be7c45643d9abfceb584e6\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0-beta1.aar\04f3dc85bcca6fa6b5925fa0fb33bcde\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0-beta1.aar\04f3dc85bcca6fa6b5925fa0fb33bcde\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-core-ui:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0-beta1.aar\045e04a59b67a9887dad14c36f15038d\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0-beta1.aar\045e04a59b67a9887dad14c36f15038d\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0-beta1.aar\97a5c508b51f0e318a6e58abdb2426dc\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0-beta1.aar\97a5c508b51f0e318a6e58abdb2426dc\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0-beta1.aar\c34a011e9f6bdaf4dc9ff54273480cb5\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0-beta1.aar\c34a011e9f6bdaf4dc9ff54273480cb5\AndroidManifest.xml:25:5-29:19
+	android:supportsRtl
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:47:9-35
+	android:label
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:45:9-41
+	android:roundIcon
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:46:9-54
+	android:icon
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:44:9-47
+	android:allowBackup
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:43:9-35
+	android:theme
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:48:9-40
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:42:9-39
+activity#com.babuwyt.documentary.ui.activity.MainActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:49:9-52:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:51:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:50:13-44
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:49:19-59
+activity#com.babuwyt.documentary.ui.activity.LoginActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:53:9-56:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:55:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:54:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:53:19-60
+activity#com.babuwyt.documentary.ui.activity.MsgCenterActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:57:9-60:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:59:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:58:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:57:19-64
+activity#com.babuwyt.documentary.ui.activity.MsgDetailsActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:61:9-64:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:63:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:62:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:61:19-65
+activity#com.babuwyt.documentary.ui.activity.LoadExamineActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:65:9-68:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:67:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:66:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:65:19-66
+activity#com.babuwyt.documentary.ui.activity.LookBigPicActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:69:9-72:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:71:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:70:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:69:19-65
+activity#com.babuwyt.documentary.ui.activity.OrderDetailsActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:73:9-76:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:75:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:74:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:73:19-67
+activity#com.babuwyt.documentary.ui.activity.GuijiActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:77:9-80:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:79:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:78:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:77:19-60
+activity#com.babuwyt.documentary.ui.activity.WeiZhiActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:81:9-84:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:83:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:82:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:81:19-61
+activity#com.babuwyt.documentary.ui.activity.SettingActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:85:9-88:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:87:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:86:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:85:19-62
+activity#com.babuwyt.documentary.ui.activity.StateGenzongActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:89:9-92:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:91:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:90:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:89:19-67
+activity#com.babuwyt.documentary.ui.activity.ChengePsdActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:93:9-96:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:95:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:94:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:93:19-64
+activity#com.babuwyt.documentary.ui.activity.SignPicActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:97:9-106:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:99:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:98:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:97:19-62
+activity#com.babuwyt.documentary.ui.activity.WelcomeActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:107:9-115:20
+	android:screenOrientation
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:109:13-49
+	android:launchMode
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:108:13-43
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:107:19-62
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:110:13-114:29
+action#android.intent.action.MAIN
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:111:17-69
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:111:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:113:17-77
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:113:27-74
+activity#jpush.TestActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:119:9-124:20
+	android:exported
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:119:53-77
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:119:19-52
+intent-filter#jpush.testAction+jpush.testCategory
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:120:13-123:29
+action#jpush.testAction
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:121:17-59
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:121:25-56
+category#jpush.testCategory
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:122:17-63
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:122:27-60
+activity#cn.jpush.android.ui.PushActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:127:9-137:20
+	android:exported
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:131:13-37
+	android:configChanges
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:129:13-63
+	android:theme
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:130:13-60
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:128:13-60
+intent-filter#android.intent.category.DEFAULT+cn.jpush.android.ui.PushActivity+com.babuwyt.documentary
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:132:13-136:29
+action#cn.jpush.android.ui.PushActivity
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:133:17-75
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:133:25-72
+category#android.intent.category.DEFAULT
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:134:17-76
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:134:27-73
+category#com.babuwyt.documentary
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:135:17-68
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:135:27-65
+service#cn.jpush.android.service.PushService
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:140:9-150:19
+	android:process
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:142:13-36
+	android:exported
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:143:13-37
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:141:13-64
+intent-filter#cn.jpush.android.intent.PUSH_TIME+cn.jpush.android.intent.PushService+cn.jpush.android.intent.REGISTER+cn.jpush.android.intent.REPORT
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:144:13-149:29
+action#cn.jpush.android.intent.REGISTER
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:145:17-75
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:145:25-72
+action#cn.jpush.android.intent.REPORT
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:146:17-73
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:146:25-70
+action#cn.jpush.android.intent.PushService
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:147:17-78
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:147:25-75
+action#cn.jpush.android.intent.PUSH_TIME
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:148:17-76
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:148:25-73
+receiver#cn.jpush.android.service.PushReceiver
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:152:9-171:20
+	android:enabled
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:154:13-35
+	android:exported
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:155:13-37
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:153:13-65
+intent-filter#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+com.babuwyt.documentary
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:156:13-159:29
+	android:priority
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:156:28-51
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:157:17-94
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:157:25-91
+intent-filter#android.intent.action.USER_PRESENT+android.net.conn.CONNECTIVITY_CHANGE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:160:13-163:29
+action#android.intent.action.USER_PRESENT
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:161:17-77
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:161:25-74
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:162:17-79
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:162:25-76
+intent-filter#android.intent.action.PACKAGE_ADDED+android.intent.action.PACKAGE_REMOVED
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:165:13-170:29
+action#android.intent.action.PACKAGE_ADDED
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:166:17-78
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:166:25-75
+action#android.intent.action.PACKAGE_REMOVED
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:167:17-80
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:167:25-77
+data
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:169:17-50
+	android:scheme
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:169:23-47
+receiver#cn.jpush.android.service.AlarmReceiver
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:174:9-99
+	android:exported
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:174:73-97
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:174:19-72
+receiver#jpush.MyReceiver
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:177:9-189:20
+	android:enabled
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:180:13-35
+	android:exported
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:179:13-37
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:178:13-44
+intent-filter#cn.jpush.android.intent.CONNECTION+cn.jpush.android.intent.MESSAGE_RECEIVED+cn.jpush.android.intent.NOTIFICATION_OPENED+cn.jpush.android.intent.NOTIFICATION_RECEIVED+cn.jpush.android.intent.REGISTRATION+com.babuwyt.documentary
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:181:13-188:29
+action#cn.jpush.android.intent.REGISTRATION
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:182:17-79
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:182:25-76
+action#cn.jpush.android.intent.MESSAGE_RECEIVED
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:183:17-83
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:183:25-80
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:184:17-88
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:184:25-85
+action#cn.jpush.android.intent.NOTIFICATION_OPENED
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:185:17-86
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:185:25-83
+action#cn.jpush.android.intent.CONNECTION
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:186:17-77
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:186:25-74
+receiver#jpush.MyJPushMessageReceiver
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:192:9-197:20
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:192:19-62
+intent-filter#cn.jpush.android.intent.RECEIVE_MESSAGE+com.babuwyt.documentary
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:193:13-196:29
+action#cn.jpush.android.intent.RECEIVE_MESSAGE
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:194:17-82
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:194:25-79
+meta-data#JPUSH_CHANNEL
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:199:9-84
+	android:value
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:199:49-82
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:199:20-48
+meta-data#JPUSH_APPKEY
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:200:9-91
+	android:value
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:200:48-88
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:200:20-47
+meta-data#com.amap.api.v2.apikey
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:203:9-206:21
+	android:value
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:205:13-61
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:204:13-50
+service#com.amap.api.location.APSService
+ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:207:9-67
+	android:name
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml:207:18-65
+uses-sdk
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+MERGED from [com.liaoinstan.springview:library:1.2.6] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\library-1.2.6.aar\fc0ca85e7f16ad9bded204827c39ffe4\AndroidManifest.xml:7:5-9:41
+MERGED from [com.liaoinstan.springview:library:1.2.6] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\library-1.2.6.aar\fc0ca85e7f16ad9bded204827c39ffe4\AndroidManifest.xml:7:5-9:41
+MERGED from [:jonylibrary] E:\develop\android\project\WYTApp3\jonylibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:jonylibrary] E:\develop\android\project\WYTApp3\jonylibrary\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0-beta1.aar\0e772c60e64d5d34b029ca9a3943a72e\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0-beta1.aar\0e772c60e64d5d34b029ca9a3943a72e\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\02a5dcf8334e01f558aa64ab23675da3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\02a5dcf8334e01f558aa64ab23675da3\AndroidManifest.xml:5:5-7:41
+MERGED from [org.xutils:xutils:3.5.0] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\xutils-3.5.0.aar\88c8357fcd8337061471dec66b0315f1\AndroidManifest.xml:8:5-10:41
+MERGED from [org.xutils:xutils:3.5.0] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\xutils-3.5.0.aar\88c8357fcd8337061471dec66b0315f1\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:transition:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\transition-26.0.0-beta1.aar\5c61c9623d72fa92caab80946e9a6bd8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\transition-26.0.0-beta1.aar\5c61c9623d72fa92caab80946e9a6bd8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0-beta1.aar\18a02ad65fe9c76481f5c19f59e77610\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0-beta1.aar\18a02ad65fe9c76481f5c19f59e77610\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:recyclerview-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0-beta1.aar\46a8df849e9f5c07310b58c905104752\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0-beta1.aar\46a8df849e9f5c07310b58c905104752\AndroidManifest.xml:20:5-44
+MERGED from [in.srain.cube:ultra-ptr:1.0.11] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\ultra-ptr-1.0.11.aar\f5f99cc7f4342b9597eb432825fa3dbd\AndroidManifest.xml:7:5-9:41
+MERGED from [in.srain.cube:ultra-ptr:1.0.11] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\ultra-ptr-1.0.11.aar\f5f99cc7f4342b9597eb432825fa3dbd\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-media-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0-beta1.aar\dd976921a2b4002ba13ab0cc820aea90\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0-beta1.aar\dd976921a2b4002ba13ab0cc820aea90\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0-beta1.aar\3dc72455be975e3e9495d82fd53ee8d7\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0-beta1.aar\3dc72455be975e3e9495d82fd53ee8d7\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0-beta1.aar\b5b673b562be7c45643d9abfceb584e6\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0-beta1.aar\b5b673b562be7c45643d9abfceb584e6\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0-beta1.aar\04f3dc85bcca6fa6b5925fa0fb33bcde\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0-beta1.aar\04f3dc85bcca6fa6b5925fa0fb33bcde\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0-beta1.aar\045e04a59b67a9887dad14c36f15038d\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0-beta1.aar\045e04a59b67a9887dad14c36f15038d\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0-beta1.aar\97a5c508b51f0e318a6e58abdb2426dc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0-beta1.aar\97a5c508b51f0e318a6e58abdb2426dc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0-beta1.aar\c34a011e9f6bdaf4dc9ff54273480cb5\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0-beta1.aar\c34a011e9f6bdaf4dc9ff54273480cb5\AndroidManifest.xml:21:5-23:58
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+		ADDED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+		INJECTED from E:\develop\android\project\WYTApp3\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:appcompat-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0-beta1.aar\0e772c60e64d5d34b029ca9a3943a72e\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:appcompat-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0-beta1.aar\0e772c60e64d5d34b029ca9a3943a72e\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:transition:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\transition-26.0.0-beta1.aar\5c61c9623d72fa92caab80946e9a6bd8\AndroidManifest.xml:23:9-25:44
+MERGED from [com.android.support:transition:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\transition-26.0.0-beta1.aar\5c61c9623d72fa92caab80946e9a6bd8\AndroidManifest.xml:23:9-25:44
+MERGED from [com.android.support:support-v4:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0-beta1.aar\18a02ad65fe9c76481f5c19f59e77610\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-v4:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0-beta1.aar\18a02ad65fe9c76481f5c19f59e77610\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:recyclerview-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0-beta1.aar\46a8df849e9f5c07310b58c905104752\AndroidManifest.xml:23:9-25:44
+MERGED from [com.android.support:recyclerview-v7:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0-beta1.aar\46a8df849e9f5c07310b58c905104752\AndroidManifest.xml:23:9-25:44
+MERGED from [com.android.support:support-media-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0-beta1.aar\dd976921a2b4002ba13ab0cc820aea90\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-media-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0-beta1.aar\dd976921a2b4002ba13ab0cc820aea90\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-fragment:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0-beta1.aar\3dc72455be975e3e9495d82fd53ee8d7\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-fragment:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0-beta1.aar\3dc72455be975e3e9495d82fd53ee8d7\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-core-utils:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0-beta1.aar\b5b673b562be7c45643d9abfceb584e6\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-core-utils:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0-beta1.aar\b5b673b562be7c45643d9abfceb584e6\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0-beta1.aar\04f3dc85bcca6fa6b5925fa0fb33bcde\AndroidManifest.xml:23:9-25:44
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0-beta1.aar\04f3dc85bcca6fa6b5925fa0fb33bcde\AndroidManifest.xml:23:9-25:44
+MERGED from [com.android.support:support-core-ui:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0-beta1.aar\045e04a59b67a9887dad14c36f15038d\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-core-ui:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0-beta1.aar\045e04a59b67a9887dad14c36f15038d\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0-beta1.aar\97a5c508b51f0e318a6e58abdb2426dc\AndroidManifest.xml:23:9-25:44
+MERGED from [com.android.support:support-vector-drawable:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0-beta1.aar\97a5c508b51f0e318a6e58abdb2426dc\AndroidManifest.xml:23:9-25:44
+MERGED from [com.android.support:support-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0-beta1.aar\c34a011e9f6bdaf4dc9ff54273480cb5\AndroidManifest.xml:26:9-28:44
+MERGED from [com.android.support:support-compat:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0-beta1.aar\c34a011e9f6bdaf4dc9ff54273480cb5\AndroidManifest.xml:26:9-28:44
+	android:value
+		ADDED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:28:13-41
+	android:name
+		ADDED from [com.android.support:design:26.0.0-beta1] C:\Users\lenovo\.gradle\caches\transforms-1\files-1.1\design-26.0.0-beta1.aar\c999eba3eb841110b7a2cd21e0f734bc\AndroidManifest.xml:27:13-51

@@ -1,0 +1,147 @@
+package com.babuwyt.siji.ui.activity;
+
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+
+import com.babuwyt.jonylibrary.util.CameraUtils;
+import com.babuwyt.siji.R;
+import com.babuwyt.siji.adapter.LoadingPicAdapter;
+import com.babuwyt.siji.base.BaseActivity;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lenovo on 2017/9/25.
+ */
+@ContentView(R.layout.activity_loadingpic)
+public class SignPicActivity extends BaseActivity implements LoadingPicAdapter.DeleteListener, Toolbar.OnMenuItemClickListener {
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.recyclerview)
+    RecyclerView recyclerview;
+
+    private RecyclerView.LayoutManager manager;
+    private ArrayList<String> mList;
+    private LoadingPicAdapter mAdapter;
+    private String videoPath = null;
+    private String srcPath = "";//本地文件的绝对路径
+    private String cosPath = "";
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
+    private void init() {
+        toolbar.setTitle(R.string.signpic);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        toolbar.inflateMenu(R.menu.main);
+        toolbar.setOnMenuItemClickListener(this);
+        manager = new GridLayoutManager(this, 3);
+        recyclerview.setLayoutManager(manager);
+        mList = new ArrayList<String>();
+        mAdapter = new LoadingPicAdapter(this, mList);
+        recyclerview.setAdapter(mAdapter);
+        mAdapter.setDeleteListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onDelete(final int position) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.delete_pic));
+        builder.setNegativeButton(getString(R.string.queding), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                String s = mList.get(position);
+                mList.remove(s);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+        builder.setPositiveButton(getString(R.string.quxiao), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.create().show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                startCamera();
+                break;
+        }
+        return true;
+    }
+
+    public void startCamera() {
+        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(openCameraIntent, 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 0) {
+                if (data != null) {
+                    // 取得返回的Uri,基本上选择照片的时候返回的是以Uri形式，但是在拍照中有得机子呢Uri是空的，所以要特别注意
+                    Uri uri = data.getData();
+                    /*
+                     * 返回的Uri不为空时，那么图片信息数据都会在Uri中获得。如果为空，那么我们就进行下面的方式获取
+                     * 拍照后保存到相册的手机
+                     */
+                    if (uri != null) {
+                        Cursor cursor = getContentResolver().query(uri, null,
+                                null, null, null);
+                        if (cursor.moveToFirst()) {
+                            videoPath = cursor.getString(cursor.getColumnIndex("_data"));// 获取绝对路径
+                            srcPath = videoPath;
+                            mList.add(srcPath);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                    //小米等 拍照后不保存的手机
+                    else {
+                        Bitmap bm = (Bitmap) data.getExtras().get("data");
+                        videoPath = CameraUtils.getPath(bm);
+                        srcPath = videoPath;
+                        mList.add(srcPath);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="5dp">
+    <TextView
+        android:id="@+id/tv_remain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="松开刷新"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black_666"
+        android:textSize="12sp" />
+    <ImageView
+        android:id="@+id/image_ref"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_toLeftOf="@+id/tv_remain"
+        android:scaleType="centerInside"
+        android:layout_marginRight="20dp"
+        android:visibility="gone"
+        android:src="@drawable/pullrefresh_down"/>
+    <ImageView
+        android:id="@+id/image_loading"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_toLeftOf="@+id/tv_remain"
+        android:scaleType="centerInside"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/loading_drawable"/>
+    <ProgressBar
+        android:id="@+id/progressber"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:visibility="gone"
+        android:indeterminateDrawable="@drawable/pullrefresh_progressbar"/>
+
+</RelativeLayout>

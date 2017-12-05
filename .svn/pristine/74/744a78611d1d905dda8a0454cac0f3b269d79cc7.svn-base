@@ -1,0 +1,47 @@
+package com.babuwyt.consignor.ui.activity;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
+
+import com.babuwyt.consignor.R;
+import com.babuwyt.consignor.base.BaseActivity;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+/**
+ * Created by lenovo on 2017/9/5.
+ */
+@ContentView(R.layout.activity_companyinfo)
+public class CompanyInfoActivity extends BaseActivity {
+    @ViewInject(R.id.tv_companycode)
+    TextView tv_companycode;
+    @ViewInject(R.id.tv_companyperson)
+    TextView tv_companyperson;
+    @ViewInject(R.id.tv_companyname)
+    TextView tv_companyname;
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
+    private void init() {
+        toolbar.setTitle(getString(R.string.companyinfo));
+        toolbar.setNavigationIcon(R.drawable.goback);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        tv_companycode.setText("155615561185");
+        tv_companyperson.setText("董光萤");
+        tv_companyname.setText("巴布科技有限公司");
+    }
+}

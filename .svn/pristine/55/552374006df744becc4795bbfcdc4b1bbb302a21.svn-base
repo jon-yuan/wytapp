@@ -1,0 +1,35 @@
+package com.babuwyt.documentary.entity;
+
+import com.babuwyt.documentary.util.JsonResponseParser;
+
+import org.xutils.http.annotation.HttpResponse;
+
+/**
+ * Created by lenovo on 2017/7/28.
+ */
+@HttpResponse(parser = JsonResponseParser.class)
+public class OrderDetailsEntityFromtomap {
+    private String TO;
+    private String FROM;
+
+    public String getTO() {
+        return TO;
+    }
+
+    public void setTO(String TO) {
+        this.TO = TO;
+    }
+
+    public String getFROM() {
+        return FROM;
+    }
+
+    public void setFROM(String FROM) {
+        this.FROM = FROM;
+    }
+
+    /**
+     * "TO": "陕西省西安市陕西省塔山乡沈家屯村以及段木丛村",
+     "FROM": "陕西省西安市陕西省锦业时代"
+     */
+}

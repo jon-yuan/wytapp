@@ -1,0 +1,32 @@
+package com.babuwyt.siji.entity;
+
+import com.babuwyt.jonylibrary.util.JsonResponseParser;
+
+import org.xutils.http.annotation.HttpResponse;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lenovo on 2017/9/26.
+ */
+@HttpResponse(parser = JsonResponseParser.class)
+public class LookPicEntity  {
+    private String fpicture;
+    private ArrayList<String> httpSignPictureRess;
+
+    public String getFpicture() {
+        return fpicture;
+    }
+
+    public void setFpicture(String fpicture) {
+        this.fpicture = fpicture;
+    }
+
+    public ArrayList<String> getHttpSignPictureRess() {
+        return httpSignPictureRess;
+    }
+
+    public void setHttpSignPictureRess(ArrayList<String> httpSignPictureRess) {
+        this.httpSignPictureRess = httpSignPictureRess;
+    }
+}

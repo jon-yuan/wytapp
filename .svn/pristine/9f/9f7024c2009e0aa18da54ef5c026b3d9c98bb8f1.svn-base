@@ -1,0 +1,147 @@
+package com.babuwyt.consignor.adapter;
+
+import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.babuwyt.consignor.R;
+import com.babuwyt.consignor.entity.OrderEntity;
+import com.babuwyt.consignor.ui.activity.OrderDetailsActivity;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lenovo on 2017/9/10.
+ */
+
+public class GenzongOrderAdapter extends BaseAdapter {
+    private Context mContext;
+    private ArrayList<OrderEntity> mList;
+
+    public GenzongOrderAdapter(Context context){
+        this.mContext=context;
+        this.mList=new ArrayList<OrderEntity>();
+    }
+    public void setmList(ArrayList<OrderEntity> list){
+        if (list!=null){
+            mList=list;
+        }
+    }
+    @Override
+    public int getCount() {
+        return mList.size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return i;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public View getView(final int i, View view, ViewGroup viewGroup) {
+        ViewHolder holder=null;
+        if (view==null){
+            holder=new ViewHolder();
+            view= LayoutInflater.from(this.mContext).inflate(R.layout.adapter_genzongorder, null);
+            x.view().inject(holder,view);
+            view.setTag(holder);
+        }else {
+            holder= (ViewHolder) view.getTag();
+        }
+        if (TextUtils.isEmpty(mList.get(i).getOrderNumber())){
+            holder.tv_yundancode.setText(mList.get(i).getOrderSysNumber());
+        }else {
+            holder.tv_yundancode.setText(mList.get(i).getOrderNumber());
+        }
+        holder.tv_form.setText(mList.get(i).getRouteFrom());
+        holder.tv_to.setText(mList.get(i).getRouteTo());
+        holder.tv_chexing.setText(mList.get(i).getCarType());
+        holder.tv_huowu.setText(mList.get(i).getGoodsName());
+        holder.tv_time.setText(mList.get(i).getExtractTime());
+        holder.zhuangtai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callBack!=null){
+                    callBack.zhuangtai(i);
+                }
+            }
+        });
+        holder.guiji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callBack!=null){
+                    callBack.guiji(i);
+                }
+            }
+        });
+        holder.weizhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callBack!=null){
+                    callBack.weizhi(i);
+                }
+            }
+        });
+        holder.layout_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(mContext, OrderDetailsActivity.class);
+                intent.putExtra("orderId",mList.get(i).getOrderId());
+                mContext.startActivity(intent);
+            }
+        });
+
+
+        return view;
+    }
+
+    class ViewHolder{
+        @ViewInject(R.id.tv_to)
+        TextView tv_to;
+        @ViewInject(R.id.tv_yundancode)
+        TextView tv_yundancode;
+        @ViewInject(R.id.tv_form)
+        TextView tv_form;
+        @ViewInject(R.id.tv_chexing)
+        TextView tv_chexing;
+        @ViewInject(R.id.tv_huowu)
+        TextView tv_huowu;
+        @ViewInject(R.id.tv_time)
+        TextView tv_time;
+        @ViewInject(R.id.zhuangtai)
+        LinearLayout zhuangtai;
+        @ViewInject(R.id.weizhi)
+        LinearLayout weizhi;
+        @ViewInject(R.id.guiji)
+        LinearLayout guiji;
+        @ViewInject(R.id.layout_item)
+        LinearLayout layout_item;
+    }
+    public interface CallBack{
+        void weizhi(int position);
+        void guiji(int position);
+        void zhuangtai(int position);
+    }
+
+    private CallBack callBack;
+    public void setCallBack(CallBack callBack){
+        this.callBack=callBack;
+    }
+
+
+}

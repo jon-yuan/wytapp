@@ -1,0 +1,118 @@
+package com.babuwyt.daili.ui.activity;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.babuwyt.daili.R;
+import com.babuwyt.daili.adapter.StateGenzongAdapter;
+import com.babuwyt.daili.base.BaseActivity;
+import com.babuwyt.daili.bean.StateGenzongBean;
+import com.babuwyt.daili.entity.Driver;
+import com.babuwyt.daili.entity.StateGenzongEntity;
+import com.babuwyt.daili.finals.BaseURL;
+import com.babuwyt.jonylibrary.inteface.MyCallBack;
+import com.babuwyt.jonylibrary.util.UHelper;
+import com.babuwyt.jonylibrary.util.XUtil;
+import com.google.gson.Gson;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lenovo on 2017/8/24.
+ */
+@ContentView(R.layout.activity_stategenzong)
+public class StateGenzongActivity extends BaseActivity {
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.listview)
+    ListView listview;
+    @ViewInject(R.id.tv_dingdan)
+    TextView tv_dingdan;
+    @ViewInject(R.id.tv_state)
+    TextView tv_state;
+    @ViewInject(R.id.tv_siji)
+    TextView tv_siji;
+    @ViewInject(R.id.tv_dianhua)
+    TextView tv_dianhua;
+    @ViewInject(R.id.layout_driver)
+    LinearLayout layout_driver;
+    private ArrayList<StateGenzongEntity> mList;
+    private StateGenzongAdapter mAdapter;
+    private String fownerid;
+    private Driver mdriver;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fownerid=getIntent().getStringExtra("fwonid");
+        init();
+        getState();
+    }
+
+    private void init() {
+
+        toolbar.setTitle(getString(R.string.zhuangtaigenzong));
+        toolbar.setNavigationIcon(R.drawable.goback_black);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        mAdapter=new StateGenzongAdapter(this);
+        mList=new ArrayList<StateGenzongEntity>();
+        mAdapter.setmList(mList);
+        listview.setAdapter(mAdapter);
+
+    }
+
+
+    private void getState(){
+        ArrayList<String> list=new ArrayList<String>();
+        list.add(fownerid);
+//        list.add("3");
+        loadingDialog.showDialog();
+        XUtil.GetPing(BaseURL.GETWORKTRACK, list, new MyCallBack<StateGenzongBean>() {
+            @Override
+            public void onSuccess(StateGenzongBean result) {
+                super.onSuccess(result);
+                loadingDialog.dissDialog();
+                Log.d("获取state",new Gson().toJson(result));
+                if (result.isSuccess()){
+                    mList.clear();
+                    mList.addAll(result.getObj().getWorktrack());
+                    mAdapter.notifyDataSetChanged();
+                    mdriver=result.getObj().getDriver();
+                    setData();
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                loadingDialog.dissDialog();
+
+                UHelper.showToast(StateGenzongActivity.this,getString(R.string.NET_ERROR));
+            }
+        });
+    }
+
+    private void setData(){
+        if (mdriver==null){
+            return;
+        }
+        layout_driver.setVisibility(View.VISIBLE);
+        tv_dingdan.setText("订单"+mdriver.getFsendcarno());
+        tv_dianhua.setText("联系电话:"+mdriver.getFtel());
+        tv_siji.setText("司机："+mdriver.getDrivername()+"  车牌号："+mdriver.getFplateno());
+        tv_state.setText("已派车");
+    }
+
+}

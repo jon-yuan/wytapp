@@ -1,0 +1,80 @@
+package com.babuwyt.siji.ui.activity;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
+
+import com.babuwyt.siji.R;
+import com.babuwyt.siji.adapter.OtherCostAdapter;
+import com.babuwyt.siji.base.BaseActivity;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lenovo on 2017/9/21.
+ * 其他费用 包括收入 扣除
+ */
+@ContentView(R.layout.activity_othercost)
+public class OtherCostActivity extends BaseActivity {
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.recyclerview)
+    RecyclerView recyclerview;
+    @ViewInject(R.id.totalcost)
+    TextView totalcost;
+
+    private RecyclerView.LayoutManager manager;
+    private OtherCostAdapter mAdapter;
+    private ArrayList<String> mList;
+    private int type;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        type=getIntent().getIntExtra("type",-1);
+        init();
+    }
+
+    private void init() {
+        toolbar.setTitle(type==1?getString(R.string.othershouru):getString(R.string.otherkouchu));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        manager=new LinearLayoutManager(this);
+        recyclerview.setLayoutManager(manager);
+        mList=new ArrayList<String>();
+
+        mAdapter=new OtherCostAdapter(this,mList);
+        recyclerview.setAdapter(mAdapter);
+        setData();
+    }
+
+    private void setData(){
+        if (type==1){
+            totalcost.setText("其他收入总计:4455");
+        }else {
+            totalcost.setText("其他扣除总计:1111");
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mList.add("11");
+        mList.add("11");
+        mList.add("11");
+        mList.add("11");
+        mAdapter.notifyDataSetChanged();
+
+    }
+}

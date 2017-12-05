@@ -1,0 +1,4 @@
+#Wed Nov 29 20:05:34 CST 2017
+base.0=E\:\\develop\\android\\project\\WYTApp3\\agentapp\\build\\intermediates\\transforms\\dex\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex

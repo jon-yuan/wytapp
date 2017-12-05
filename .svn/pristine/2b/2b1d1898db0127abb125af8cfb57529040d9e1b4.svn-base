@@ -1,0 +1,61 @@
+package com.babuwyt.siji.ui.activity;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+
+import com.babuwyt.siji.R;
+import com.babuwyt.siji.adapter.LookAddressListAdapter;
+import com.babuwyt.siji.base.BaseActivity;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lenovo on 2017/9/25.
+ * 查看提卸货地详情
+ */
+@ContentView(R.layout.activity_lookaddresslist)
+public class LookAddressListActivity extends BaseActivity {
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.recyclerview)
+    RecyclerView recyclerview;
+    private RecyclerView.LayoutManager manager;
+    private ArrayList<String> mList;
+    private LookAddressListAdapter mAdapter;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
+    private void init() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        manager=new LinearLayoutManager(this);
+        recyclerview.setLayoutManager(manager);
+        mList=new ArrayList<String>();
+        mAdapter=new LookAddressListAdapter(this,mList);
+        recyclerview.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mList.add("1");
+        mList.add("1");
+        mList.add("1");
+        mList.add("1");
+        mAdapter.notifyDataSetChanged();
+    }
+}

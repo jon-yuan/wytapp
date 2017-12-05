@@ -1,0 +1,153 @@
+package com.babuwyt.daili.ui.activity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.babuwyt.daili.R;
+import com.babuwyt.daili.adapter.WayBillAdapter;
+import com.babuwyt.daili.adapter.WaybillTrackingAdapter;
+import com.babuwyt.daili.base.BaseActivity;
+import com.babuwyt.daili.base.SessionManager;
+import com.babuwyt.daili.bean.WaybillTrackingBean;
+import com.babuwyt.daili.entity.WaybillTrackingEntity;
+import com.babuwyt.daili.finals.BaseURL;
+import com.babuwyt.jonylibrary.bean.BaseBean;
+import com.babuwyt.jonylibrary.inteface.EndLessOnScrollListener;
+import com.babuwyt.jonylibrary.inteface.MyCallBack;
+import com.babuwyt.jonylibrary.pulltorefresh.PullRefreshLayout;
+import com.babuwyt.jonylibrary.pulltorefresh.layout.RefreshLayout;
+import com.babuwyt.jonylibrary.util.UHelper;
+import com.babuwyt.jonylibrary.util.ViewUtils;
+import com.babuwyt.jonylibrary.util.XUtil;
+import com.babuwyt.jonylibrary.views.RecyclerViewForEmpty;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+
+/**
+ * Created by lenovo on 2017/8/22.
+ */
+@ContentView(R.layout.activity_waybilltracking)
+public class WaybillTrackingActivity extends BaseActivity implements PullRefreshLayout.OnRefreshListener {
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.recyclerview)
+    RecyclerViewForEmpty recyclerview;
+    @ViewInject(R.id.pullrefreshlayout)
+    PullRefreshLayout pullrefreshlayout;
+    //    @ViewInject(R.id.load_more_list_view_container)
+//    LoadMoreListViewContainer mLoadMoreListViewContainer;
+    private RecyclerView.LayoutManager mManager;
+    private WayBillAdapter mAdapter;
+    private ArrayList<WaybillTrackingEntity> mList;
+    private int pageNum = 0;
+    private int type = 1; //1刷新  2加载更多
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+        getHttpRefresh();
+    }
+
+    private void init() {
+        toolbar.setTitle(getString(R.string.yundangenzong));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        mList = new ArrayList<WaybillTrackingEntity>();
+        ViewUtils.setEmptyListView(this, recyclerview, getString(R.string.no_data));
+        mAdapter = new WayBillAdapter(this, mList);
+        mManager = new LinearLayoutManager(this);
+        recyclerview.setLayoutManager(mManager);
+        recyclerview.setAdapter(mAdapter);
+        pullrefreshlayout.setRefreshListener(this);
+
+
+    }
+
+
+    private void getHttpRefresh() {
+        pageNum=0;
+        ArrayList<String> list = new ArrayList<String>();
+        list.add(pageNum + "");
+        list.add(SessionManager.getInstance().getUser().getFid());
+        list.add(SessionManager.getInstance().getUser().getFforwardercode() + "");
+        loadingDialog.showDialog();
+        XUtil.GetPing(BaseURL.FINDCAR, list, new MyCallBack<WaybillTrackingBean>() {
+            @Override
+            public void onSuccess(WaybillTrackingBean baseBean) {
+                loadingDialog.dissDialog();
+                if (baseBean.isSuccess()) {
+                    if (mList != null) {
+                        mList.clear();
+                        mList.addAll(baseBean.getObj());
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+                pullrefreshlayout.refreshFinished();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                loadingDialog.dissDialog();
+                pullrefreshlayout.refreshFinished();
+            }
+        });
+    }
+
+    private void getHttpLoadMore() {
+        pageNum++;
+        ArrayList<String> list = new ArrayList<String>();
+        list.add(pageNum + "");
+        list.add(SessionManager.getInstance().getUser().getFid());
+        list.add(SessionManager.getInstance().getUser().getFforwardercode() + "");
+        loadingDialog.showDialog();
+        XUtil.GetPing(BaseURL.FINDCAR, list, new MyCallBack<WaybillTrackingBean>() {
+            @Override
+            public void onSuccess(WaybillTrackingBean baseBean) {
+                loadingDialog.dissDialog();
+                if (baseBean.isSuccess()) {
+                    if (mList != null) {
+                        mList.addAll(baseBean.getObj());
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+                pullrefreshlayout.loadMoreFinished();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                loadingDialog.dissDialog();
+                pullrefreshlayout.loadMoreFinished();
+            }
+        });
+    }
+
+    @Override
+    public void refreshFinished() {
+        getHttpRefresh();
+    }
+
+    @Override
+    public void loadMoreFinished() {
+        getHttpLoadMore();
+    }
+}

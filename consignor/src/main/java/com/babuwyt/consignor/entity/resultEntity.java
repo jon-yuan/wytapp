@@ -1,0 +1,31 @@
+package com.babuwyt.consignor.entity;
+
+import com.babuwyt.jonylibrary.util.JsonResponseParser;
+
+import org.xutils.http.annotation.HttpResponse;
+
+/**
+ * Created by lenovo on 2017/8/31.
+ */
+@HttpResponse(parser = JsonResponseParser.class)
+public class resultEntity {
+
+    private double wgLon;
+    private double wgLat;
+
+    public double getWgLon() {
+        return wgLon;
+    }
+
+    public void setWgLon(double wgLon) {
+        this.wgLon = wgLon;
+    }
+
+    public double getWgLat() {
+        return wgLat;
+    }
+
+    public void setWgLat(double wgLat) {
+        this.wgLat = wgLat;
+    }
+}

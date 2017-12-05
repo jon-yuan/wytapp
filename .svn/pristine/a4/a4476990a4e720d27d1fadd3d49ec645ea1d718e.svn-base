@@ -1,0 +1,39 @@
+package com.babuwyt.siji.entity;
+
+import com.babuwyt.jonylibrary.util.JsonResponseParser;
+
+import org.xutils.http.annotation.HttpResponse;
+
+/**
+ * Created by lenovo on 2017/9/26.
+ */
+@HttpResponse(parser = JsonResponseParser.class)
+public class PicEntity {
+    private String picture;
+    private int type;
+    private String fSignNo;
+
+    public String getfSignNo() {
+        return fSignNo;
+    }
+
+    public void setfSignNo(String fSignNo) {
+        this.fSignNo = fSignNo;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+}

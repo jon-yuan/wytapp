@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="backgroundcolor">#FFFDFDFD</color>
+    <color name="bantouming">#55000000</color>
+    <color name="black">#000</color>
+    <color name="black_333">#333</color>
+    <color name="black_666">#666</color>
+    <color name="black_98">#FF989898</color>
+    <color name="black_DDD">#dddddd</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="color_btn_blue">#FF2D8BEE</color>
+    <color name="color_btn_red">#FFFF6D7B</color>
+    <color name="corner_color">#00FF00</color>
+    <color name="laser_color">#0F0</color>
+    <color name="login_btn_color">#FF2F3E5F</color>
+    <color name="main_gray_line">#FFE5E5E5</color>
+    <color name="main_gray_line1">#FFF4F6F8</color>
+    <color name="msg_yundanhao_blue">#FF303f9f</color>
+    <color name="red">#f00</color>
+    <color name="result_point_color">#C0FFFF00</color>
+    <color name="result_view">#B0000000</color>
+    <color name="viewfinder_frame">#90FFFFFF</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="white">#fff</color>
+    <declare-styleable name="ViewfinderView"><attr format="color" name="corner_color"/><attr format="color" name="laser_color"/><attr format="color" name="frame_color"/><attr format="color" name="mask_color"/><attr format="color" name="result_point_color"/><attr format="color" name="result_color"/><attr format="color" name="label_text_color"/><attr format="string" name="label_text"/><attr format="float" name="label_text_size"/></declare-styleable>
+    <item name="auto_focus" type="id"/>
+    <item name="decode" type="id"/>
+    <item name="decode_failed" type="id"/>
+    <item name="decode_succeeded" type="id"/>
+    <item name="encode_failed" type="id"/>
+    <item name="encode_succeeded" type="id"/>
+    <item name="launch_product_query" type="id"/>
+    <item name="quit" type="id"/>
+    <item name="restart_preview" type="id"/>
+    <item name="return_scan_result" type="id"/>
+    <item name="search_book_contents_failed" type="id"/>
+    <item name="search_book_contents_succeeded" type="id"/>
+    <string name="NET_ERROR">网络异常</string>
+    <string name="app_name">万运通-现场版</string>
+    <string name="beizhu">备注</string>
+    <string name="chongzhi">充值</string>
+    <string name="chuxuka">储蓄卡</string>
+    <string name="code_text">请输入生成二维码的文本信息</string>
+    <string name="commit">提交</string>
+    <string name="company_code">Copyright ⓒ 2017 万运通</string>
+    <string name="company_name">巴布科技有限公司</string>
+    <string name="dencode_qrcode">扫描二维码</string>
+    <string name="encode_qrcode">生成二维码</string>
+    <string name="error">异常</string>
+    <string name="error_alias_empty">alias不能为空</string>
+    <string name="error_tag_empty">tag不能为空</string>
+    <string name="error_tag_gs_empty">格式不对</string>
+    <string name="examine_succeed">审核通过</string>
+    <string name="examine_unsucceed">审核不通过</string>
+    <string name="huowu">货物</string>
+    <string name="huowu1">货物:</string>
+    <string name="loading_examine">装载照片</string>
+    <string name="login">登录</string>
+    <string name="login_faild">登录失败</string>
+    <string name="login_neterr">网络异常</string>
+    <string name="login_succeed">登录成功</string>
+    <string name="msg_center">消息中心</string>
+    <string name="msg_details">消息详情</string>
+    <string name="onclickisexit">再次点击退出应用</string>
+    <string name="orderdetails">订单详情</string>
+    <string name="please_input_psd">请输入密码</string>
+    <string name="please_input_zhanghao">请输入账号</string>
+    <string name="qianshou_pic">签收照片</string>
+    <string name="qrcodetext">这里显示扫描结果</string>
+    <string name="queding">确定</string>
+    <string name="shiji_tihuo_time">实际提货时间</string>
+    <string name="shishiweizhi">实时位置</string>
+    <string name="shuruyanzhengma">输入验证码</string>
+    <string name="state">状态</string>
+    <string name="tihuo">提货</string>
+    <string name="tihuo_time">计划提货时间</string>
+    <string name="xiehuo">卸货</string>
+    <string name="xingshiguiji">行驶轨迹</string>
+    <string name="yundanhao">运单号</string>
+    <string name="zhuangxiezhaopian">装卸照片</string>
+    <string name="zuoyegenzong">作业跟踪</string>
+    <style name="bottom_menu_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/bottom_menu_enter</item>
+        <item name="android:windowExitAnimation">@anim/bottom_menu_exit</item>
+    </style>
+    <style name="dialog_custom" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>    <!--是否浮在界面上-->
+        <item name="android:windowIsTranslucent">true</item> <!--是否半透明-->
+        <item name="android:windowNoTitle">true</item>       <!--是否有标题-->
+        <item name="android:windowBackground">@android:color/transparent</item> <!--窗口背景色透明-->
+        <item name="android:backgroundDimEnabled">true</item> <!--背景是否模糊显示-->
+    </style>
+    <style name="loading_dialog1" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>    <!--是否浮在界面上-->
+        <item name="android:windowIsTranslucent">true</item> <!--是否半透明-->
+        <item name="android:windowNoTitle">true</item>       <!--是否有标题-->
+        <item name="android:windowBackground">@android:color/transparent</item> <!--窗口背景色透明-->
+        <item name="android:backgroundDimEnabled">false</item> <!--背景是否模糊显示-->
+    </style>
+</resources>

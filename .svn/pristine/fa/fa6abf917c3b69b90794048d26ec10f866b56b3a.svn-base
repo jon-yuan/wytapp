@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--toolbar 字体大小-->
+    <dimen name="ToolTitleSize">20sp</dimen>
+</resources>

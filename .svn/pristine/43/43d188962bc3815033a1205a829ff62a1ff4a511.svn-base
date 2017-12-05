@@ -1,0 +1,95 @@
+package com.babuwyt.siji.entity;
+
+import com.babuwyt.jonylibrary.util.JsonResponseParser;
+
+import org.xutils.http.annotation.HttpResponse;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lenovo on 2017/9/28.
+ */
+@HttpResponse(parser = JsonResponseParser.class)
+public class OrderDetailsEntity {
+    private int fstate;
+    private String fsendcarno;
+    private long fdelivergoodtime;//提货时间
+    private long farrivetime;//抵达时间
+    private long fpiecenum;//托书数
+    private long fbulk;//体积
+    private long fvalue;//保值
+    private long fremark;//备注
+    private ArrayList<LookAddressEntity> loadpick;
+
+    public int getFstate() {
+        return fstate;
+    }
+
+    public void setFstate(int fstate) {
+        this.fstate = fstate;
+    }
+
+    public String getFsendcarno() {
+        return fsendcarno;
+    }
+
+    public void setFsendcarno(String fsendcarno) {
+        this.fsendcarno = fsendcarno;
+    }
+
+    public long getFdelivergoodtime() {
+        return fdelivergoodtime;
+    }
+
+    public void setFdelivergoodtime(long fdelivergoodtime) {
+        this.fdelivergoodtime = fdelivergoodtime;
+    }
+
+    public long getFarrivetime() {
+        return farrivetime;
+    }
+
+    public void setFarrivetime(long farrivetime) {
+        this.farrivetime = farrivetime;
+    }
+
+    public long getFpiecenum() {
+        return fpiecenum;
+    }
+
+    public void setFpiecenum(long fpiecenum) {
+        this.fpiecenum = fpiecenum;
+    }
+
+    public long getFbulk() {
+        return fbulk;
+    }
+
+    public void setFbulk(long fbulk) {
+        this.fbulk = fbulk;
+    }
+
+    public long getFvalue() {
+        return fvalue;
+    }
+
+    public void setFvalue(long fvalue) {
+        this.fvalue = fvalue;
+    }
+
+    public long getFremark() {
+        return fremark;
+    }
+
+    public void setFremark(long fremark) {
+        this.fremark = fremark;
+    }
+
+    public ArrayList<LookAddressEntity> getLoadpick() {
+        return loadpick;
+    }
+
+    public void setLoadpick(ArrayList<LookAddressEntity> loadpick) {
+        this.loadpick = loadpick;
+    }
+}

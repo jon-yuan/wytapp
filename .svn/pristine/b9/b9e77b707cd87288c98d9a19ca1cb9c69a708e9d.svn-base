@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/icon_cehua_logo"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:textColor="#000"/>
+
+    </LinearLayout>
+    
+    
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:orientation="vertical">
+       <LinearLayout
+           android:id="@+id/layout_gerenxinxi"
+           android:layout_width="match_parent"
+           android:layout_height="45dp"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:paddingHorizontal="30dp"
+           android:layout_marginTop="50dp">
+           <ImageView
+               android:layout_width="20dp"
+               android:layout_height="20dp"
+               android:src="@drawable/icon_gerenxinxi"
+               android:scaleType="centerInside"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="个人信息"
+               android:layout_marginLeft="30dp"
+               android:textSize="14sp"
+               android:textColor="#333"/>
+       </LinearLayout>
+       <LinearLayout
+           android:id="@+id/layout_qiyexinxi"
+           android:layout_width="match_parent"
+           android:layout_height="45dp"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:paddingHorizontal="30dp">
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="20dp"
+               android:src="@drawable/icon_qiyexinxi"
+               android:scaleType="centerInside"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="企业信息"
+               android:layout_marginLeft="30dp"
+               android:textSize="14sp"
+               android:textColor="#333"/>
+       </LinearLayout>
+       <LinearLayout
+           android:id="@+id/layout_wodedingdan"
+           android:layout_width="match_parent"
+           android:layout_height="45dp"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:paddingHorizontal="30dp">
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="20dp"
+               android:src="@drawable/icon_myorder"
+               android:scaleType="centerInside"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="我的订单"
+               android:layout_marginLeft="30dp"
+               android:textSize="14sp"
+               android:textColor="#333"/>
+       </LinearLayout>
+       <LinearLayout
+           android:id="@+id/layout_setting"
+           android:layout_width="match_parent"
+           android:layout_height="45dp"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:paddingHorizontal="30dp">
+           <ImageView
+               android:layout_width="20dp"
+               android:layout_height="20dp"
+               android:src="@drawable/icon_setting"
+               android:scaleType="centerInside"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="设置         "
+               android:layout_marginLeft="30dp"
+               android:textSize="14sp"
+               android:textColor="#333"/>
+       </LinearLayout>
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="万运通城市合伙人"
+            android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/tv_versionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="v1.1"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

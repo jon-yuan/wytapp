@@ -1,0 +1,99 @@
+package com.babuwyt.daili.ui.activity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.babuwyt.daili.R;
+import com.babuwyt.daili.adapter.WaybillTrackingAdapter;
+import com.babuwyt.daili.base.BaseActivity;
+import com.babuwyt.daili.base.SessionManager;
+import com.babuwyt.daili.bean.WaybillTrackingBean;
+import com.babuwyt.daili.entity.WaybillTrackingEntity;
+import com.babuwyt.daili.finals.BaseURL;
+import com.babuwyt.jonylibrary.bean.BaseBean;
+import com.babuwyt.jonylibrary.inteface.MyCallBack;
+import com.babuwyt.jonylibrary.util.UHelper;
+import com.babuwyt.jonylibrary.util.XUtil;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lenovo on 2017/8/22.
+ */
+@ContentView(R.layout.activity_waybilltracking)
+public class WaybillTrackingActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.listview)
+    ListView listview;
+    private WaybillTrackingAdapter mAdapter;
+    private ArrayList<WaybillTrackingEntity> mList;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+        getHttp();
+    }
+    private void init() {
+        toolbar.setTitle(getString(R.string.yundangenzong));
+        toolbar.setNavigationIcon(R.drawable.goback);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        mList=new ArrayList<WaybillTrackingEntity>();
+        mAdapter=new WaybillTrackingAdapter(this);
+        mAdapter.setmList(mList);
+        listview.setAdapter(mAdapter);
+        listview.setOnItemClickListener(this);
+    }
+
+
+    private void getHttp(){
+        ArrayList<String> list=new ArrayList<String>();
+        list.add("0");
+        list.add(SessionManager.getInstance().getUser().getFid());
+        list.add(SessionManager.getInstance().getUser().getFforwardercode()+"");
+        loadingDialog.showDialog();
+        XUtil.GetPing(BaseURL.FINDCAR, list, new MyCallBack<WaybillTrackingBean>() {
+            @Override
+            public void onSuccess(WaybillTrackingBean baseBean) {
+                loadingDialog.dissDialog();
+                if (baseBean.isSuccess()){
+                    if (mList!=null){
+                        mList.clear();
+                        mList.addAll(baseBean.getObj());
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+                UHelper.showToast(WaybillTrackingActivity.this,baseBean.getMsg());
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                loadingDialog.dissDialog();
+            }
+        });
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent=new Intent();
+        intent.setClass(this,OrderDetailsActivity.class);
+        intent.putExtra("fsendcarno",mList.get(i).getFsendcarno());
+        intent.putExtra("sendcarid",mList.get(i).getFwonid());
+        startActivity(intent);
+    }
+}

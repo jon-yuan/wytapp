@@ -1,0 +1,34 @@
+package com.babuwyt.consignor.ui.activity;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.babuwyt.consignor.R;
+import com.babuwyt.consignor.base.BaseActivity;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+
+/**
+ * Created by lenovo on 2017/9/6.
+ */
+@ContentView(R.layout.activity_reginster)
+public class RegisterActivity extends BaseActivity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
+    @Event(value = {R.id.img_goback})
+    private void getE(View v){
+        switch (v.getId()){
+            case R.id.img_goback:
+                finish();
+                break;
+        }
+    }
+}

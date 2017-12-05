@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item >
+        <layer-list>
+            <!-- SHADOW LAYER -->
+            <item>
+                <shape>
+                    <!--<solid android:color="#FFECECED" />-->
+                    <solid android:color="@color/main_gray_line" />
+                    <corners
+                        android:bottomLeftRadius="4dp"
+                        android:bottomRightRadius="4dp"/>
+                </shape>
+            </item>
+            <!-- CONTENT LAYER -->
+            <!-- 相当于padding -->
+            <item
+                android:bottom="2dp"
+                android:right="2dp"
+                android:top="2dp"
+                android:left="2dp">
+                <shape>
+                    <solid android:color="@color/white" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

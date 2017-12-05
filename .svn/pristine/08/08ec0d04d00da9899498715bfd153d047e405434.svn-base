@@ -1,0 +1,40 @@
+package com.babuwyt.consignor;
+
+
+import android.os.Bundle;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+
+import com.babuwyt.consignor.ui.fragment.MainLeftFragment;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+@ContentView(R.layout.activity_main)
+public class MainActivity extends AppCompatActivity{
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    private MainLeftFragment fragment;
+    private FragmentManager manager;
+    private FragmentTransaction transaction;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        x.view().inject(this);
+        toolbar.setTitle("首页");
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+
+        fragment=new MainLeftFragment();
+        transaction.replace(R.id.fl_content, fragment);
+        transaction.commit();
+    }
+
+
+}

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.liaoinstan.springview:library-1.2.6">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.2.6.aar/fc0ca85e7f16ad9bded204827c39ffe4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.2.6.aar/fc0ca85e7f16ad9bded204827c39ffe4/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liaoinstan.springview/library/1.2.6/8a0dc669d28734d6d42e3d8c5558486988acf79c/library-1.2.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

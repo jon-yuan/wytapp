@@ -1,0 +1,393 @@
+package com.babuwyt.siji.ui.activity;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.babuwyt.jonylibrary.bean.BaseBean;
+import com.babuwyt.jonylibrary.inteface.MyCallBack;
+import com.babuwyt.jonylibrary.util.CameraUtils;
+import com.babuwyt.jonylibrary.util.UHelper;
+import com.babuwyt.jonylibrary.util.XUtil;
+import com.babuwyt.jonylibrary.views.dialog.ImgCheckDialog;
+import com.babuwyt.siji.R;
+import com.babuwyt.siji.base.BaseActivity;
+import com.babuwyt.siji.base.SessionManager;
+import com.babuwyt.siji.bean.CarTypeBean;
+import com.babuwyt.siji.entity.CarTypeEntity;
+import com.babuwyt.siji.finals.BaseURL;
+import com.babuwyt.siji.utils.TencentYunUtils;
+import com.bigkoo.pickerview.OptionsPickerView;
+import com.tencent.cos.model.COSRequest;
+import com.tencent.cos.model.COSResult;
+import com.tencent.cos.task.listener.IUploadTaskListener;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by lenovo on 2017/9/22.
+ * 个人信息认证
+ */
+@ContentView(R.layout.activity_peisonalinfoauth)
+public class PersonalInfoAuthActivity extends BaseActivity {
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.tv_name)
+    TextView tv_name;//姓名
+    @ViewInject(R.id.tv_idcard)
+    TextView tv_idcard;//身份证
+    @ViewInject(R.id.tv_phonenum)
+    TextView tv_phonenum;//手机号
+    @ViewInject(R.id.img_idcardimg1)
+    ImageView img_idcardimg1;
+    @ViewInject(R.id.img_idcardimg2)
+    ImageView img_idcardimg2;
+    @ViewInject(R.id.img_idcardimg3)
+    ImageView img_idcardimg3;
+    @ViewInject(R.id.tv_carnum)
+    TextView tv_carnum;
+    @ViewInject(R.id.cartype)
+    TextView cartype;
+    @ViewInject(R.id.tv_xingshizheng)
+    TextView tv_xingshizheng;
+    @ViewInject(R.id.tv_jiashizheng)
+    TextView tv_jiashizheng;
+    @ViewInject(R.id.tv_carsuoyouren)
+    TextView tv_carsuoyouren;
+    @ViewInject(R.id.img_jiashiimg1)
+    ImageView img_jiashiimg1;
+    @ViewInject(R.id.img_xingshizhengimg1)
+    ImageView img_xingshizhengimg1;
+    private String srcPath = "";
+    private String idcardimg1, idcardimg2, idcardimg3, jiashiimg1, xingshizhengimg1;
+    private String ftrucktypeid="";
+    private int type = 0;
+    private ArrayList<CarTypeEntity> mCars;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+        getCarType();
+    }
+
+    private void init() {
+        mCars=new ArrayList<CarTypeEntity>();
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        tv_phonenum.setText(SessionManager.getInstance().getUser().getFphone());
+    }
+
+    private void isEmpty() {
+        if (TextUtils.isEmpty(tv_name.getText().toString())) {
+            UHelper.showToast(this, getString(R.string.please_input_name));
+            return;
+        }
+        if (TextUtils.isEmpty(tv_idcard.getText().toString())) {
+            UHelper.showToast(this, getString(R.string.please_input_idcard));
+            return;
+        }
+        if (TextUtils.isEmpty(tv_phonenum.getText().toString())) {
+            UHelper.showToast(this, getString(R.string.please_input_phone_numbuter));
+            return;
+        }
+        if (TextUtils.isEmpty(tv_carnum.getText().toString())) {
+            UHelper.showToast(this, getString(R.string.please_input_carnum));
+            return;
+        }
+        if (TextUtils.isEmpty(ftrucktypeid)) {
+            UHelper.showToast(this, getString(R.string.please_select_cartype));
+            return;
+        }
+        if (TextUtils.isEmpty(tv_xingshizheng.getText().toString())) {
+            UHelper.showToast(this, getString(R.string.please_input_xingshizheng));
+            return;
+        }
+        if (TextUtils.isEmpty(tv_jiashizheng.getText().toString())) {
+            UHelper.showToast(this, getString(R.string.please_input_jiashizheng));
+            return;
+        }
+        if (TextUtils.isEmpty(tv_carsuoyouren.getText().toString())) {
+            UHelper.showToast(this, getString(R.string.please_input_cheliangsuoyouren));
+            return;
+        }
+        if (TextUtils.isEmpty(idcardimg1)) {
+            UHelper.showToast(this, getString(R.string.please_load_idcardim1));
+            return;
+        }
+        if (TextUtils.isEmpty(idcardimg2)) {
+            UHelper.showToast(this, getString(R.string.please_load_idcardim2));
+            return;
+        }
+        if (TextUtils.isEmpty(idcardimg3)) {
+            UHelper.showToast(this, getString(R.string.please_load_idcardim3));
+            return;
+        }
+        if (TextUtils.isEmpty(jiashiimg1)) {
+            UHelper.showToast(this, getString(R.string.please_load_jiashizheng));
+            return;
+        }
+        if (TextUtils.isEmpty(xingshizhengimg1)) {
+            UHelper.showToast(this, getString(R.string.please_load_xingshizheng));
+            return;
+        }
+        getAuth();
+    }
+
+    /**
+     * fdrivername: '',//姓名
+     * fcard: '',//身份证号
+     * fphone: '',//手机号
+     * fbankid: '',//银行id
+     * fbankcard: '',//卡号
+     * fcardpicture: '',//身份证照片正面
+     * fcardpicturerear: '',//身份证照片反面
+     * fhandcardpicture: '',//手持身份证照片
+     * fplateno: '',//车牌√
+     * ftrucktypeid: '',//车辆类型id
+     * fdrivenumber: '',//行驶证号码
+     * fdrivingcard: '',//驾驶证号码
+     * fattribution: '',//车辆所有人
+     * fdrivecard: '',//行驶证照片
+     * fdrivingpicture: '',//驾驶证照片
+     */
+    private void getAuth() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("fdrivername", tv_name.getText().toString().trim());
+        map.put("fcard", tv_idcard.getText().toString().trim());
+        map.put("fphone", tv_phonenum.getText().toString().trim());
+        map.put("fbankid", "");
+        map.put("fbankcard", "");
+        map.put("fcardpicture", idcardimg1);
+        map.put("fcardpicturerear", idcardimg2);
+        map.put("fhandcardpicture", idcardimg3);
+        map.put("fplateno", tv_carnum.getText().toString().trim());
+        map.put("ftrucktypeid", ftrucktypeid);
+        map.put("fdrivenumber", tv_xingshizheng.getText().toString().trim());
+        map.put("fdrivingcard", tv_jiashizheng.getText().toString().trim());
+        map.put("fattribution", tv_carsuoyouren.getText().toString().trim());
+        map.put("fdrivecard", xingshizhengimg1);
+        map.put("fdrivingpicture", jiashiimg1);
+        XUtil.PostJsonObj(BaseURL.AUTHENTICATION, map, SessionManager.getInstance().getUser().getWebtoken(), new MyCallBack<BaseBean>() {
+            @Override
+            public void onSuccess(BaseBean result) {
+                super.onSuccess(result);
+                if (result.isSuccess()){
+                    finish();
+                }
+                UHelper.showToast(PersonalInfoAuthActivity.this,result.getMsg());
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+            }
+        });
+    }
+
+    @Event(value = {R.id.cartype,R.id.tv_commit, R.id.img_idcardimg1, R.id.img_idcardimg2, R.id.img_idcardimg3, R.id.img_jiashiimg1, R.id.img_xingshizhengimg1})
+    private void getE(View v) {
+        switch (v.getId()) {
+            case R.id.tv_commit:
+                isEmpty();
+                break;
+            case R.id.img_idcardimg1:
+                isShowDialog(1);
+                break;
+            case R.id.img_idcardimg2:
+                isShowDialog(2);
+                break;
+            case R.id.img_idcardimg3:
+                isShowDialog(3);
+                break;
+            case R.id.img_jiashiimg1:
+                isShowDialog(4);
+                break;
+            case R.id.img_xingshizhengimg1:
+                isShowDialog(5);
+                break;
+            case R.id.cartype:
+                showCar();
+                break;
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private void isShowDialog(final int type) {
+        ImgCheckDialog dialog = new ImgCheckDialog(this);
+        dialog.setCallBackPaizhao(new ImgCheckDialog.CallBackPaizhao() {
+            @Override
+            public void callbackPaizhao() {
+                startCamera(type);
+            }
+        });
+        dialog.setCallBackXiangce(new ImgCheckDialog.CallBackXiangce() {
+            @Override
+            public void callbackXiangce() {
+                startPhoto(type);
+            }
+        });
+        dialog.create();
+        dialog.showDialog();
+    }
+
+    public void startCamera(int type) {
+        this.type = type;
+        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(openCameraIntent, 0);
+    }
+
+    private void startPhoto(int type) {
+        this.type = type;
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            //相机
+            if (requestCode == 0) {
+                if (data != null) {
+                    // 取得返回的Uri,基本上选择照片的时候返回的是以Uri形式，但是在拍照中有得机子呢Uri是空的，所以要特别注意
+                    Uri uri = data.getData();
+                    /*
+                     * 返回的Uri不为空时，那么图片信息数据都会在Uri中获得。如果为空，那么我们就进行下面的方式获取
+                     * 拍照后保存到相册的手机
+                     */
+                    if (uri != null) {
+                        Cursor cursor = getContentResolver().query(uri, null,
+                                null, null, null);
+                        if (cursor.moveToFirst()) {
+                            srcPath = cursor.getString(cursor.getColumnIndex("_data"));// 获取绝对路径
+//                            x.image().bind(img, videoPath);
+                            upload(srcPath);
+                        }
+                    }
+                    //小米等 拍照后不保存的手机
+                    else {
+                        Bitmap bm = (Bitmap) data.getExtras().get("data");
+                        srcPath = CameraUtils.getPath(bm);
+//                        x.image().bind(img, videoPath);
+                        upload(srcPath);
+                    }
+                }
+            }
+            //相册
+            if (requestCode == 1) {
+                Uri uri = data.getData();
+                srcPath = uri.getPath();
+//                x.image().bind(img,videoPath);
+                upload(srcPath);
+            }
+        }
+    }
+
+    /**
+     * 上传图片
+     * @param srcPath
+     */
+    public void upload(final String srcPath) {
+        if (TextUtils.isEmpty(srcPath)){
+            return;
+        }
+        final String cosPath = "wyt" + System.currentTimeMillis() / 1000 + ".jpg";
+        TencentYunUtils.upload(this, srcPath,cosPath, new IUploadTaskListener() {
+            @Override
+            public void onProgress(COSRequest cosRequest, long l, long l1) {
+            }
+            @Override
+            public void onCancel(COSRequest cosRequest, COSResult cosResult) {
+            }
+            @Override
+            public void onSuccess(COSRequest cosRequest, COSResult cosResult) {
+                withTpye(cosPath);
+            }
+            @Override
+            public void onFailed(COSRequest cosRequest, COSResult cosResult) {
+            }
+        });
+    }
+    //idcardimg1, idcardimg2, idcardimg3, jiashiimg1, xingshizhengimg1;
+    private void withTpye(String path) {
+        switch (type) {
+            case 1:
+                idcardimg1=path;
+                x.image().bind(img_idcardimg1,BaseURL.BASE_IMAGE_URI+path,XUtil.options(ImageView.ScaleType.FIT_CENTER));
+                break;
+            case 2:
+                idcardimg2=path;
+                x.image().bind(img_idcardimg2,BaseURL.BASE_IMAGE_URI+path,XUtil.options(ImageView.ScaleType.FIT_CENTER));
+                break;
+            case 3:
+                idcardimg3=path;
+                x.image().bind(img_idcardimg3,BaseURL.BASE_IMAGE_URI+path,XUtil.options(ImageView.ScaleType.FIT_CENTER));
+                break;
+            case 4:
+                jiashiimg1=path;
+                x.image().bind(img_jiashiimg1,BaseURL.BASE_IMAGE_URI+path,XUtil.options(ImageView.ScaleType.FIT_CENTER));
+                break;
+            case 5:
+                xingshizhengimg1=path;
+                x.image().bind(img_xingshizhengimg1,BaseURL.BASE_IMAGE_URI+path,XUtil.options(ImageView.ScaleType.FIT_CENTER));
+                break;
+        }
+    }
+
+    private void showCar(){
+        final OptionsPickerView pvOptions = new  OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
+                //返回的分别是三个级别的选中位置
+                cartype.setText(mCars.get(options1).getPickerViewText());
+                ftrucktypeid=mCars.get(options1).getFid();
+            }
+        }).build();
+        pvOptions.setPicker(mCars);
+        pvOptions.show();
+    }
+    private void getCarType(){
+        dialog.showDialog();
+        XUtil.GetPing(BaseURL.SELECT_CAR_TYPE,new ArrayList<String>(),SessionManager.getInstance().getUser().getWebtoken(),new MyCallBack<CarTypeBean>(){
+            @Override
+            public void onSuccess(CarTypeBean result) {
+                super.onSuccess(result);
+                dialog.dissDialog();
+                if (result.isSuccess()){
+                    mCars.addAll(result.getObj());
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                dialog.dissDialog();
+            }
+        });
+    }
+
+
+
+}
